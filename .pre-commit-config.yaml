@@ -1,0 +1,30 @@
+repos:
+  - repo: local
+    hooks:
+      - id: golangci-lint
+        name: golangci-lint
+        language: system
+        entry: golangci-lint run
+        types: [go]
+        pass_filenames: false
+
+      - id: gosec
+        name: gosec
+        language: system
+        entry: gosec ./...
+        types: [go]
+        pass_filenames: false
+
+      - id: govulncheck
+        name: govulncheck
+        language: system
+        entry: govulncheck ./...
+        types: [go]
+        pass_filenames: false
+
+      - id: go-test-race
+        name: go test -race
+        language: system
+        entry: go test -race ./...
+        types: [go]
+        pass_filenames: false
