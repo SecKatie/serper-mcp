@@ -9,6 +9,12 @@ An MCP server that exposes Google search and web scraping via the [Serper API](h
 - **search** — performs a Google search and returns results as JSON
 - **scrape** — fetches and returns the content of a webpage as JSON
 
+## Installation
+
+```sh
+go install github.com/SecKatie/serper-mcp@latest
+```
+
 ## Configuration
 
 Set your Serper API key via environment variable:
