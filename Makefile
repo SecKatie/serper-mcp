@@ -1,6 +1,7 @@
 MODULE := github.com/SecKatie/serper-mcp
 VERSION_PKG := $(MODULE)/cmd
-LDFLAGS := -ldflags "-X $(VERSION_PKG).version={{.Version}}"
+VERSION := $(shell git describe --tags --always --dirty 2>/dev/null || echo "dev")
+LDFLAGS := -ldflags "-X $(VERSION_PKG).version=$(VERSION)"
 
 .PHONY: build test lint audit release
 
