@@ -49,7 +49,8 @@ type scrapeInput struct {
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "serper-mcp",
+	Use:     "serper-mcp",
+	Version: version,
 	Short: "MCP server for Google search and web scraping via Serper",
 	Long: `serper-mcp is an MCP server that exposes two tools:
   - search: performs a Google search via the Serper API
