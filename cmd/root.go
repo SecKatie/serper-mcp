@@ -27,6 +27,7 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"runtime/debug"
 	"strings"
 
 	"github.com/SecKatie/serper-mcp/internal/serper"
@@ -35,9 +36,20 @@ import (
 	"github.com/spf13/viper"
 )
 
+// ldVersion may be overridden at link time via -X; goreleaser uses this.
+var ldVersion = ""
+
 var (
 	cfgFile string
-	version = "dev"
+	version = func() string {
+		if ldVersion != "" {
+			return ldVersion
+		}
+		if info, ok := debug.ReadBuildInfo(); ok && info.Main.Version != "" && info.Main.Version != "(devel)" {
+			return info.Main.Version
+		}
+		return "dev"
+	}()
 )
 
 type searchInput struct {
